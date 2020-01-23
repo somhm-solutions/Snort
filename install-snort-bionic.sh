@@ -1,22 +1,6 @@
-INSTALL_LOC=/usr/local/bin
 
-function prep(){
-    # Update and upggrade
-    sudo apt update && sudo apt upgrade;
-    # Build Install location
-    mkdir $INSTALL_LOC/snort_src && cd $INSTALL_LOC/snort_src;
-    sudo sudo apt install -y build-essential autotools-dev libdumbnet-dev libluajit-5.1-dev libpcap-dev libpcre3-dev zlib1g-dev pkg-config libhwloc-de;
-    sudo apt install -y cmake;
-    sudo apt install -y liblzma-dev openssl libssl-dev cpputest libsqlite3-dev uuid-dev;
-    apt install -y libtool git autoconf;
-    sudo apt install -y bison flex;
 
-    wget \ >https://downloads.sourceforge.net/project/safeclib/libsafec-10052013.tar.gz
-}
-
-prep;
-
-function prepSystem(){
+function prepSystem {
     # Setup Install log Logfile
     logfile=/tmp/snort_install.log
     echo "#### SNORT SETUP SCRIPT ####\n" > $logfile
@@ -37,7 +21,7 @@ function prepSystem(){
     cd ~/snort_src
 }
 
-function installLibsafe(){
+function installLibsafe {
     ##########
     # Libsafe: Used to aviod buffer overflow issues when dealing with high volume. 
     ##########
@@ -48,7 +32,7 @@ function installLibsafe(){
     # Download the source and make/install it
     echo "\n\n### INSTALLING:\n\t ->-> Libsafe\n\n"
     echo "\n\n#### Libsafe Install ####\n" >>$logfile
-    wget -q https://downloads.sourceforge.net/project/safeclib/libsafec-10052013.tar.gz
+    wget -q https://downloads.sourceforge.net/project/safeclib/libsafec-10052013.tar.gz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fsafeclib%2Ffiles%2Flatest%2Fdownload&ts=1579754261;
     tar -xzf libsafec-10052013.tar.gz
     sudo rm libsafec-10052013.tar.gz
     cd libsafec-10052013
@@ -60,7 +44,7 @@ function installLibsafe(){
     fi
 }
 
-function installRagel(){
+function installRagel {
     ##########
     # Ragel
     ##########
@@ -85,7 +69,7 @@ function installRagel(){
     fi
  }
 
-function installHyperscan(){
+function installHyperscan {
     ##########
     # Hyperscan
     ##########
@@ -116,7 +100,7 @@ function installHyperscan(){
     fi
 }
 
-function installDAQ(){
+function installDAQ {
     ##########
     # Data AcQuisition Library (DAQ)
     ##########
@@ -140,7 +124,7 @@ function installDAQ(){
 }
 
 
-function installSnort(){
+function installSnort {
     ##########
     # Snort
     ##########
@@ -163,3 +147,4 @@ function installSnort(){
 
     sudo ln -s /opt/snort/bin/snort /usr/sbin/snort
 }
+
